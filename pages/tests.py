@@ -6,9 +6,8 @@ class HomePageTest(TestCase):
     def setUp(self):
         self.response_by_name = self.client.get(reverse('pages:home'))
 
-    def test_namespace_url(self):
+    def test_home_namespace_url(self):
         url = reverse('pages:home')
-        print(url)
         self.assertEqual(url, '/')
 
     def test_home_page_url(self):
@@ -26,7 +25,7 @@ class AboutUsTest(TestCase):
     def setUp(self):
         self.response_by_name = self.client.get(reverse('pages:aboutus'))
 
-    def test_namespace_url(self):
+    def test_about_namespace_url(self):
         url = reverse('pages:aboutus')
         self.assertEqual(url, '/aboutus/')
 
