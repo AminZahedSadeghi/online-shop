@@ -18,6 +18,11 @@
 {% include 'inc/messages.html' %}
 
 <div class="container-fluid">
+    {% if request.user.is_authenticated %}
+        Welcome {{ request.user.username }} | <a href="{% url 'account_logout' %}">Log Out</a>
+    {% else %}
+        <a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a>
+    {% endif %}
     {% block content %}
 
     {% endblock %}
