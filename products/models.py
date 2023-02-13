@@ -1,6 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse
-from django.template.defaultfilters import slugify
+
+from accounts.models import CustomUser
 
 
 class Product(models.Model):
@@ -18,3 +19,15 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('products:detail', args=[self.id, self.slug])
+
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    body = models.TextField()
+    reply = models.ForeignKey('Comment', on_delete=models.CASCADE)
+    is_reply = models.BooleanField(default=False)
+    datetime_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user}: {self.product}'
