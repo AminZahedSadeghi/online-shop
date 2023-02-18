@@ -27,6 +27,7 @@ class Comment(models.Model):
     body = models.TextField()
     reply = models.ForeignKey('Comment', on_delete=models.CASCADE, null=True, blank=True, related_name='rcomments')
     is_reply = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     datetime_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -197,29 +197,34 @@
                                        alt="Review Avatar"
                                        class="review__avatar"/>
                                   <div>
-                                    <div>
-                                    </div>
-                                    
-
-                                    <p>
-                                      <a class="btn btn-primary" data-toggle="collapse" href="#comment{{ comment.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        Reply
-                                      </a>
-                                    </p>
-                                    <div class="collapse" id="comment{{ comment.id }}">
-                                      <form action="{% url 'products:reply' comment.id product.id %}" class="form text-right" method="POST">
-                                        {% csrf_token %}
-                                        {{ comment_form|crispy }}
-                                        <div class="form__group">
-                                          <div class="form-row">
-                                            <div class="col-12">
-                                              <input type="submit" value="ارسال" class="btn-submit" />
+                                    <div></div>
+                                    {% if not request.user == comment.user and request.user.is_authenticated %}
+                                      <p>
+                                        <a class="btn btn-primary"
+                                           data-toggle="collapse"
+                                           href="#comment{{ comment.id }}"
+                                           role="button"
+                                           aria-expanded="false"
+                                           aria-controls="collapseExample">
+                                          Reply
+                                        </a>
+                                      </p>
+                                      <div class="collapse" id="comment{{ comment.id }}">
+                                        <form action="{% url 'products:reply' comment.id product.id %}"
+                                              class="form text-right"
+                                              method="POST">
+                                          {% csrf_token %}
+                                          {{ comment_form|crispy }}
+                                          <div class="form__group">
+                                            <div class="form-row">
+                                              <div class="col-12">
+                                                <input type="submit" value="ارسال" class="btn-submit" />
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      </form>
-                                    </div>
-
+                                        </form>
+                                      </div>
+                                    {% endif %}
                                     <div class="review__meta">
                                       <strong class="review__author px-4">{{ comment.user.username }}</strong
                                         >
