@@ -29,7 +29,7 @@ class ProductDetailView(View):
 
     def get(self, request, *args, **kwargs):
         product = self.product_instance
-        comments = Comment.objects.filter(product=product, is_reply=False)
+        comments = Comment.active_comments_and_false_replys.filter(product=product)
         comment_form = self.form_class()
 
         return render(request, self.template_name, {'product': product, 'comments': comments, 'comment_form': comment_form})
