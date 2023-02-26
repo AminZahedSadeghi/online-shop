@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-26 13:58+0330\n"
+"PO-Revision-Date: 2023-02-25 20:13+0000\n"
+"Last-Translator:   <root@root.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\products\templates\products\product_detail.html:19
+msgid "Detail Of"
+msgstr "جزئیات محصول"
+
+#: .\products\templates\products\product_detail.html:42
+#: .\products\templates\products\product_detail.html:44
+#: .\products\templates\products\product_list.html:58
+#: .\products\templates\products\product_list.html:61
+msgid "$"
+msgstr "تومان"
+
+#: .\products\templates\products\product_detail.html:60
+#: .\products\templates\products\product_list.html:64
+msgid "Add to Cart"
+msgstr "اضافه به سبد خرید"
+
+#: .\products\templates\products\product_detail.html:65
+msgid "Categories: "
+msgstr "دسته بندی ها:"
+
+#: .\products\templates\products\product_detail.html:86
+msgid "Product Description"
+msgstr "توضیحات محصول"
+
+#: .\products\templates\products\product_detail.html:94
+msgid "Features"
+msgstr "ویژگی ها"
+
+#: .\products\templates\products\product_detail.html:102
+msgid "Comments"
+msgstr "کامنت ها"
+
+#: .\products\templates\products\product_detail.html:234
+msgid "Write Your Comments"
+msgstr "کامنت خود را بنویسید"
+
+#: .\products\templates\products\product_detail.html:243
+msgid "Send"
+msgstr "ارسال"
+
+#: .\products\templates\products\product_list.html:51
+msgid "Special Discount"
+msgstr "تخفیف ویژه"
+
+#: .\products\views.py:47
+msgid "Your Comment Added Successfully :)"
+msgstr "کامنت شما با موفقت ثبت شد :)"
+
+#: .\products\views.py:51
+msgid "The Information Your Entered Was Not Correct :/"
+msgstr "اطلاعاتی که شما وارد کرده اید صحیح نمیباشد :/"
+
+#: .\products\views.py:70
+msgid "Your Reply Added Successfully :)"
+msgstr "ریپلای شما با موفقت ثبت شد :)"
+
+#: .\products\views.py:74
+msgid "The Information Was Not Correct :/"
+msgstr "اطلاعات وارد شده صحیح نمیباشد :/"
+
+

@@ -1,11 +1,10 @@
-import urllib.parse
-
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
 from .models import Product, Comment
 from .forms import CommentForm
@@ -29,7 +28,8 @@ class ProductDetailView(View):
 
     def get(self, request, *args, **kwargs):
         product = self.product_instance
-        comments = Comment.active_comments_and_false_replys.filter(product=product)
+        comments = Comment.active_comments_and_false_replys.filter(
+            product=product)
         comment_form = self.form_class()
 
         return render(request, self.template_name, {'product': product, 'comments': comments, 'comment_form': comment_form})
@@ -44,11 +44,11 @@ class ProductDetailView(View):
             new_comment.product = product
             new_comment.save()
             messages.success(
-                request, 'کامنت شما با موفقیت ثبت شد :)', 'success')
+                request, _('Your Comment Added Successfully :)'))
             return redirect('products:detail', product.id, product.slug)
         else:
             messages.warning(
-                request, 'اطلاعات وارد شده صحیح نمیباشد :/', 'warning')
+                request, _('The Information Your Entered Was Not Correct :/'))
             return render(request, self.template_name, {'form': form})
 
 
@@ -58,7 +58,7 @@ class ReplyView(View):
         product = Product.objects.get(pk=product_id)
         comment = Comment.objects.get(pk=comment_id)
         form = CommentForm(request.POST)
-        
+
         if form.is_valid():
             new_reply = form.save(commit=False)
             new_reply.user = request.user
@@ -66,9 +66,10 @@ class ReplyView(View):
             new_reply.reply = comment
             new_reply.is_reply = True
             new_reply.save()
-            messages.success(request, f'ریپلای شما برای محصول ({product.title}) و کامنت ({comment.body[:30]} ...) اضافه شد', 'success')
+            messages.success(
+                request, _('Your Reply Added Successfully :)'))
             return redirect('products:detail', product.id, product.slug)
         else:
-            messages.warning(request, 'اطلاعات وارد شده صحیح نمیباشد :/', 'warning')
+            messages.warning(
+                request, _('The Information Was Not Correct :/'))
             return redirect('products:detail', product.id, product.slug)
-                

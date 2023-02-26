@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+from django.contrib.messages import constants as messages
 from pathlib import Path
 import environs
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # local apps
     'accounts.apps.AccountsConfig',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'products.apps.ProductConfig',
 
     # third party apps
+    'rosetta',
     'crispy_forms',
     'crispy_bootstrap5',
     'allauth',
@@ -66,6 +69,7 @@ AUTHENTICATION_BACKENDS = [
 
 
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -90,6 +95,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                #  To reach LANGUAGE_CODE in templates by => {% get_current_lanquage %}
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -134,11 +142,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
+LANGUAGES = (
+    ('en', 'English'),
+    ('fa', 'Persian'),
+)
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'), )
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+USE_I10N = True
 
 USE_TZ = True
 
@@ -169,3 +185,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # crispy forms settings
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+# setting for messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+    messages.INFO: 'info',
+}
