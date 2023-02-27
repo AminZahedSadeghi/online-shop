@@ -4,6 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% load crispy_forms_tags %}
 {% load product_tags %}
+{% load widget_tweaks %}
 {% block page_title %}
   {{ product.title }}
 {% endblock page_title %}
@@ -44,21 +45,26 @@
                   <span class="money old-price text-danger">120,000 {% trans "$" %}</span>
                 </div>
                 <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
-                  <div class="quantity-wrapper d-flex justify-content-start">
-                    <div class="quantity">
+
+                  <form action="{% url 'cart:add' product.id %}" method="POST">
+                    {% csrf_token %}
+                    {% comment %} {{ add_to_cart_form.qty|add_class:'w-100 form-control' }} {% endcomment %}
+                    <div class="quantity" style="margin-right: 19px; margin-bottom: 12px;">
                       <input type="number"
                              class="quantity-input"
                              name="qty"
-                             id="qty"
+                             id="quick-qty"
                              value="1"
-                             min="1"/>
+                             min="1"
+                             max="30">
                     </div>
-                  </div>
-                  <button type="button"
-                          class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
-                          onclick="window.location.href='cart.html'">
-                    {% trans "Add to Cart" %}
-                  </button>
+                    <button type="submit"
+                            class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
+                            onclick="window.location.href='cart.html'">
+                      {% trans "Add to Cart" %}
+                    </button>
+                  </form>
+                  
                 </div>
                 <div class="product-footer-meta mt-5 pt-5">
                   <p>
@@ -514,28 +520,15 @@
                                             Quantity:
                                           </label
                                           >
-                                          <div class="quantity">
-                                            <input type="number"
-                                                   class="quantity-input"
-                                                   name="qty"
-                                                   id="quick-qty"
-                                                   value="1"
-                                                   min="1"/>
-                                          </div>
                                         </div>
-                                        <button type="button"
-                                                class="btn btn-small b tn-bg-red btn-color-white btn-hover-2"
-                                                onclick="window.location.href='cart.html'">
-                                          Add To Cart
-                                        </button>
-                                      </div>
-                                      <div class="product-footer-meta">
-                                        <p>
-                                          <span>Category:</span> <a href="shop.html">Full Sweater</a>,
-                                          <a href="shop.html">SweatShirt</a>,
-                                          <a href="shop.html">Jacket</a>,
-                                          <a href="shop.html">Blazer</a>
-                                        </p>
+                                        <div class="product-footer-meta">
+                                          <p>
+                                            <span>Category:</span> <a href="shop.html">Full Sweater</a>,
+                                            <a href="shop.html">SweatShirt</a>,
+                                            <a href="shop.html">Jacket</a>,
+                                            <a href="shop.html">Blazer</a>
+                                          </p>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -543,8 +536,7 @@
                               </div>
                             </div>
                           </div>
+                          <!-- Qicuk View Modal End -->
                         </div>
-                        <!-- Qicuk View Modal End -->
-                      </div>
-                      <!-- Main Wrapper End -->
-                    {% endblock content %}
+                        <!-- Main Wrapper End -->
+                      {% endblock content %}

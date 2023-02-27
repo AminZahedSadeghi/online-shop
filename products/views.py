@@ -8,6 +8,7 @@ from django.utils.translation import gettext as _
 
 from .models import Product, Comment
 from .forms import CommentForm
+from cart.forms import AddProductToCartForm
 
 
 class ProductListView(generic.ListView):
@@ -31,8 +32,9 @@ class ProductDetailView(View):
         comments = Comment.active_comments_and_false_replys.filter(
             product=product)
         comment_form = self.form_class()
+        add_to_cart_form = AddProductToCartForm
 
-        return render(request, self.template_name, {'product': product, 'comments': comments, 'comment_form': comment_form})
+        return render(request, self.template_name, {'product': product, 'comments': comments, 'comment_form': comment_form, 'add_to_cart_form': add_to_cart_form})
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
