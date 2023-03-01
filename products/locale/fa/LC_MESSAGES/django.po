@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-26 13:58+0330\n"
+"POT-Creation-Date: 2023-03-02 00:08+0330\n"
 "PO-Revision-Date: 2023-02-25 20:13+0000\n"
 "Last-Translator:   <root@root.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,64 +19,69 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\products\templates\products\product_detail.html:19
+#: .\products\templates\products\product_detail.html:20
 msgid "Detail Of"
 msgstr "جزئیات محصول"
 
-#: .\products\templates\products\product_detail.html:42
-#: .\products\templates\products\product_detail.html:44
+#: .\products\templates\products\product_detail.html:43
+#: .\products\templates\products\product_detail.html:45
 #: .\products\templates\products\product_list.html:58
 #: .\products\templates\products\product_list.html:61
 msgid "$"
 msgstr "تومان"
 
-#: .\products\templates\products\product_detail.html:60
+#: .\products\templates\products\product_detail.html:64
 #: .\products\templates\products\product_list.html:64
 msgid "Add to Cart"
 msgstr "اضافه به سبد خرید"
 
-#: .\products\templates\products\product_detail.html:65
+#: .\products\templates\products\product_detail.html:70
 msgid "Categories: "
 msgstr "دسته بندی ها:"
 
-#: .\products\templates\products\product_detail.html:86
+#: .\products\templates\products\product_detail.html:91
 msgid "Product Description"
 msgstr "توضیحات محصول"
 
-#: .\products\templates\products\product_detail.html:94
+#: .\products\templates\products\product_detail.html:99
 msgid "Features"
 msgstr "ویژگی ها"
 
-#: .\products\templates\products\product_detail.html:102
+#: .\products\templates\products\product_detail.html:107
 msgid "Comments"
 msgstr "کامنت ها"
 
-#: .\products\templates\products\product_detail.html:234
+#: .\products\templates\products\product_detail.html:239
 msgid "Write Your Comments"
 msgstr "کامنت خود را بنویسید"
 
-#: .\products\templates\products\product_detail.html:243
+#: .\products\templates\products\product_detail.html:249
+#: .\products\templates\products\product_detail.html:260
 msgid "Send"
 msgstr "ارسال"
+
+#: .\products\templates\products\product_detail.html:255
+#, python-format
+msgid ""
+"You Should <a href=\"%(link)s\">Login</a> First To Able To Send Comments !"
+msgstr "برای گذاشتن کامنت در سایت باید اول <a href=\"%(link)s\">وارد</a> شوید !"
 
 #: .\products\templates\products\product_list.html:51
 msgid "Special Discount"
 msgstr "تخفیف ویژه"
 
-#: .\products\views.py:47
+#: .\products\views.py:49
 msgid "Your Comment Added Successfully :)"
 msgstr "کامنت شما با موفقت ثبت شد :)"
 
-#: .\products\views.py:51
+#: .\products\views.py:53
 msgid "The Information Your Entered Was Not Correct :/"
 msgstr "اطلاعاتی که شما وارد کرده اید صحیح نمیباشد :/"
 
-#: .\products\views.py:70
+#: .\products\views.py:72
 msgid "Your Reply Added Successfully :)"
 msgstr "ریپلای شما با موفقت ثبت شد :)"
 
-#: .\products\views.py:74
+#: .\products\views.py:76
 msgid "The Information Was Not Correct :/"
 msgstr "اطلاعات وارد شده صحیح نمیباشد :/"
-
-

@@ -45,7 +45,6 @@
                   <span class="money old-price text-danger">120,000 {% trans "$" %}</span>
                 </div>
                 <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
-
                   <form action="{% url 'cart:add' product.id %}" method="POST">
                     {% csrf_token %}
                     {% comment %} {{ add_to_cart_form.qty|add_class:'w-100 form-control' }} {% endcomment %}
@@ -64,7 +63,6 @@
                       {% trans "Add to Cart" %}
                     </button>
                   </form>
-                  
                 </div>
                 <div class="product-footer-meta mt-5 pt-5">
                   <p>
@@ -240,17 +238,29 @@
                                   <span class="reply-title pull-right">{% trans "Write Your Comments" %}</span
                                     >
                                     <br />
-                                    <form action="" class="form text-right" method="POST">
-                                      {% csrf_token %}
-                                      {{ comment_form|crispy }}
+                                    {% if request.user.is_authenticated %}
+                                      <form action="" class="form text-right" method="POST">
+                                        {% csrf_token %}
+                                        {{ comment_form|crispy }}
+                                        <div class="form__group">
+                                          <div class="form-row">
+                                            <div class="col-12">
+                                              <input type="submit" value="{% trans 'Send' %}" class="btn-submit" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </form>
+                                    {% else %}
+                                    <div class="alert alert-warning"><strong>{% blocktranslate with link="/accounts/login" %}You Should <a href="{{ link }}">Login</a> First To Able To Send Comments !{% endblocktranslate %}</strong></div>
+                                      {{ comment_form.body|attr:'disabled'|add_class:'form-control' }}
                                       <div class="form__group">
                                         <div class="form-row">
                                           <div class="col-12">
-                                            <input type="submit" value="{% trans 'Send' %}" class="btn-submit" />
+                                            <input type="submit" value="{% trans 'Send' %}" class="btn-submit mt-4"/>
                                           </div>
                                         </div>
                                       </div>
-                                    </form>
+                                    {% endif %}
                                   </div>
                                 </div>
                               </div>

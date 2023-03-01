@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-25 23:34+0330\n"
+"POT-Creation-Date: 2023-03-02 00:08+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\cart\templates\cart\cart_detail.html:7
+msgid "Cart Detail"
+msgstr ""
+
+#: .\cart\views.py:31
+msgid "Your Product Added To Cart Successfully :) "
+msgstr ""
+
+#: .\cart\views.py:40
+msgid "The Product Has Been Removed :)"
+msgstr ""
 
 #: .\templates\account\email\email_confirmation_message.txt:5
 #, python-format

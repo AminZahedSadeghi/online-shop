@@ -30,14 +30,17 @@ class Cart:
         return len(self.cart.keys())
             
         
-    def add(self, product, qty=1):  # qty => quantity
+    def add(self, product, qty=1, inplace=False):  # qty => quantity
         """
         Add the specified product to the cart if it exists
         """
         product_id = str(product.id)
         
         if product_id not in self.cart:
-            self.cart[product_id] =  {'qty': qty}
+            self.cart[product_id] =  {'qty': 0}
+        
+        if inplace:
+            self.cart[product_id]['qty'] = qty
         else:
             self.cart[product_id]['qty'] += qty
         

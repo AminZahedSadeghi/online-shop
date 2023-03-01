@@ -10,6 +10,11 @@ from .forms import AddProductToCartForm
 class CartDetailView(View):
     def get(self, request):
         cart = Cart(request)
+        for item in cart:
+            item['product_update_qty_form'] = AddProductToCartForm(initial={
+                'qty': item['qty'],
+                'inplace': True,
+            })
         return render(request, 'cart/cart_detail.html', {'cart': cart})
     
 class CartAddView(View):
@@ -21,8 +26,13 @@ class CartAddView(View):
         if form.is_valid():
             cd = form.cleaned_data
             qty = cd['qty']
-            cart.add(product, qty)
-            messages.success(request, _('Your Product Added To Cart Successfully :) '))
+            inplace = cd['inplace']
+            cart.add(product, qty, inplace=cd['inplace'])
+            if inplace:
+                messages.success(request, _('Quantity Has Been Changed :) '))
+            else:
+                messages.success(request, _('Your Product Added To Cart Successfully :) '))
+                                
             return redirect('cart:detail')
         
 
