@@ -12,7 +12,14 @@ class Cart:
         if not cart:
             cart = self.session['cart'] = {}
         
+        
         self.cart = cart
+        
+        # if a product delete on datebase, automatically remove from session
+        for product_id in self.cart.keys():
+            if not Product.objects.filter(id=int(product_id)).exists():
+                del self.cart[product_id]
+                self.save()
         
     def __iter__(self):
         product_ids = self.cart.keys()
@@ -24,6 +31,7 @@ class Cart:
             cart[str(prodcut.id)]['product_obj'] = prodcut
         
         for item in cart.values():
+            item['price'] = item['product_obj'].price * item['qty']
             yield item
         
     def __len__(self):
@@ -71,8 +79,9 @@ class Cart:
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         
-        return sum([product.price*product_ids[product.id]['qty'] for product in products])
-
+        # return sum([product.price*self.cart[str(product.id)]['qty'] for product in products])  # another way
+        return(sum([item['product_obj'].price*item['qty'] for item in self.cart.values()]))
+    
     def save(self):
         """
         Save changes in the cart
