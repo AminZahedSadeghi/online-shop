@@ -5,6 +5,7 @@
 {% load product_tags %}
 {% load widget_tweaks %}
 {% load jalali_tags %}
+{% load persian_translation_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 {% block page_title %}
   {{ product.title }}
@@ -46,10 +47,10 @@
                 <h3 class="product-title mb--20">{{ product.title }}</h3>
                 <p class="product-short-description mb--20">{{ product.description|truncatewords:37 }}</p>
                 <div class="my-5 py-5 product-price-wrapper mb--25">
-                  <span class="money text-success">{{ product.price|separate_each_3 }} {% trans "$" %}</span>
+                  <span class="money text-success">{{ product.price|separate_each_3|translate_number }} {% trans "$" %}</span>
                   {% if product.discount %}
                     <span class="price-separator">-</span>
-                    <span class="money old-price text-danger">{{ product.discount }} {% trans "$" %}</span>
+                    <span class="money old-price text-danger">{{ product.discount|translate_number }} {% trans "$" %}</span>
                   {% endif %}
                 </div>
                 <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
@@ -111,7 +112,7 @@
                      href="#nav-reviews"
                      role="tab"
                      aria-selected="true">
-                    <span>{% trans "Comments" %} ({{ comments.count }})</span>
+                    <span>{% trans "Comments" %} ({{ comments.count|translate_number }})</span>
                   </a>
                 </div>
                 <div class="tab-content product-data-tab__content" id="product-tabContent">
@@ -156,7 +157,7 @@
                     <div class="product-reviews">
                       {% if LANGUAGE_CODE == 'fa-ir' %}
                         <h3 class="review__title">
-                          {{ comments.count }} نظر برای {{ product.title }}
+                          {{ comments.count|translate_number }} نظر برای {{ product.title }}
                         </h3>
                       {% elif LANGUAGE_CODE == 'en-us' %}
                         <h3 class="review__title" dir="ltr">
@@ -203,7 +204,7 @@
                                       </div>
                                     {% endif %}
                                     <div class="review__meta">
-                                      <span class="review__published-date" style="padding-right: 15px;">{{ comment.datetime_created|to_jalali:'%Y/%m/%d' }}</span>
+                                      <span class="review__published-date" style="padding-right: 15px;">{{ comment.datetime_created|to_jalali:'%Y/%m/%d'|translate_number }}</span>
                                       <span class="review__dash">-</span>
                                       <strong class="review__author px-4">{{ comment.user.username }}</strong>
                                     </div>
@@ -229,7 +230,7 @@
                                   <img src="{% static 'img/others/comment-1.jpg' %}"
                                        alt="Review Avatar"
                                        class="review__avatar"/>
-                                  <strong>{{ reply.user.username }}</strong> | <small>{{ reply.datetime_created|to_jalali:'%Y/%m/%d' }}</small>
+                                  <strong>{{ reply.user.username }}</strong> | <small>{{ reply.datetime_created|to_jalali:'%Y/%m/%d'|translate_number }}</small>
                                   <div>
                                     {{ reply.body }}
                                   </div>

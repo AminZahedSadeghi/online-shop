@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load static %}
 {% load product_tags %}
+{% load persian_translation_tags %}
 
 <header class="header">
     <div class="header-inner fixed-header">
@@ -52,7 +53,7 @@
                         <li class="header-toolbar__item mini-cart-item">
                             <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                 <i class="flaticon flaticon-shopping-cart"></i>
-                                <sup class="mini-cart-count">{{ cart|length }}</sup>
+                                <sup class="mini-cart-count">{{ cart|length|translate_number }}</sup>
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
@@ -121,7 +122,7 @@
                                 </a>
                             </span>
                             <span class="mini-cart__product__quantity">
-                                <span>{{ item.price|separate_each_3 }} {% trans "$" %}</span> &#215; <span>{{ item.qty }}</span>
+                                <span>{{ item.price|separate_each_3|translate_number }} {% trans "$" %}</span> &#215; <span>{{ item.qty|translate_number }}</span>
                             </span>
                         </div>
                     </li>
@@ -131,7 +132,7 @@
                 </ul>
                 <div class="mini-cart__total">
                     <span>{% trans "Total Price" %}</span>
-                    <span class="ammount">{{ cart.total_price }} {% trans "$" %}</span>
+                    <span class="ammount">{{ cart.total_price|translate_number }} {% trans "$" %}</span>
                 </div>
                 <div class="mini-cart__buttons">
                     <a href="{% url 'cart:detail' %}" class="btn btn-fullwidth btn-bg-sand mb--20">{% trans "Go To Cart" %}</a>

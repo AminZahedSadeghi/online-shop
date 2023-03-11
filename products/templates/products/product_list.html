@@ -67,7 +67,7 @@
                                                             {% if product.discount %}
                                                                 <span class="money-separator">-</span>
                                                                 <span class="old-price text-danger">
-                                                                    <span class="money text-danger">{{ product.discount }} {% trans "$" %}</span>
+                                                                    <span class="money text-danger">{{ product.discount|translate_number }} {% trans "$" %}</span>
                                                                 </span>
                                                             {% endif %}
                                                         </div>
