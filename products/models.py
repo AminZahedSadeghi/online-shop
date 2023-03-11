@@ -15,6 +15,7 @@ class Product(models.Model):
     slug = models.SlugField(null=True, blank=True, allow_unicode=True)
     description = models.TextField()
     price = models.PositiveIntegerField()
+    discount = models.PositiveIntegerField(blank=True, null=True)
     active = models.BooleanField(default=True)
     cover = models.ImageField(upload_to='products/cover', blank=True, null=True)
 
