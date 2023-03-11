@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+{% load product_tags %}
 
 <header class="header">
     <div class="header-inner fixed-header">
@@ -51,7 +52,7 @@
                         <li class="header-toolbar__item mini-cart-item">
                             <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                 <i class="flaticon flaticon-shopping-cart"></i>
-                                <sup class="mini-cart-count">2</sup>
+                                <sup class="mini-cart-count">{{ cart|length }}</sup>
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
@@ -89,3 +90,55 @@
         </div>
     </div>
 </header>
+<!-- Mini Cart Start -->
+<aside class="mini-cart" id="miniCart">
+    <div class="mini-cart-wrapper">
+        <a href="" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+        <div class="mini-cart-inner">
+            <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">{% trans "Cart" %}</h3>
+            <div class="mini-cart__content">
+                <ul class="mini-cart__list text-right">
+
+                    {% for item in cart %}
+
+                    <li class="mini-cart__product d-flex justify-content-between">
+                        <div class="mini-cart__product__image">
+                            {% if item.product_obj.cover %}
+                            <a href="{% url 'products:detail' item.product_obj.id item.product_obj.slug %}">
+                                <img src="{{ item.product_obj.cover.url }}" alt="{{ item.product_obj.title }}">
+                            </a>
+                            {% else %}
+                                <a href="{% url 'products:detail' item.product_obj.id item.product_obj.slug %}">
+                                    <img src="" alt="{{ item.product_obj.title }}">
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="mini-cart__product__content pt-2">
+                            <span class="mini-cart__product__title d-flex flex-row justify-content-between">
+                                <a href="{% url 'products:detail' item.product_obj.id item.product_obj.slug %}">{{ item.product_obj.title }}</a>
+                                <a href="{% url 'cart:remove' item.product_obj.id %}" class="">
+                                    &#10060;
+                                </a>
+                            </span>
+                            <span class="mini-cart__product__quantity">
+                                <span>{{ item.price|separate_each_3 }} {% trans "$" %}</span> &#215; <span>{{ item.qty }}</span>
+                            </span>
+                        </div>
+                    </li>
+                    
+                    {% endfor %}
+                    
+                </ul>
+                <div class="mini-cart__total">
+                    <span>{% trans "Total Price" %}</span>
+                    <span class="ammount">{{ cart.total_price }} {% trans "$" %}</span>
+                </div>
+                <div class="mini-cart__buttons">
+                    <a href="{% url 'cart:detail' %}" class="btn btn-fullwidth btn-bg-sand mb--20">{% trans "Go To Cart" %}</a>
+                    <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">{% trans "Payment" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+<!-- Mini Cart End -->

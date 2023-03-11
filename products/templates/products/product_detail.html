@@ -1,10 +1,12 @@
 {% extends "_base.html" %}
 {% load static %}
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
 {% load crispy_forms_tags %}
 {% load product_tags %}
 {% load widget_tweaks %}
+{% load jalali_tags %}
+
+{% get_current_language as LANGUAGE_CODE %}
 {% block page_title %}
   {{ product.title }}
 {% endblock page_title %}
@@ -30,10 +32,15 @@
         <div class="container">
           <div class="row no-gutters mb--80">
             <div class="col-12 col-sm-4 product-main-image d-flex align-content-center">
-              <img class="m-auto"
-                   style="max-height: 400px"
-                   src="https://dkstatics-public.digikala.com/digikala-products/8f34ee9823202d09ee97deb9b1c8e3300a9a24d8_1643265727.jpg?x-oss-process=image/resize,w_1600/quality,q_80"
-                   alt=""/>
+              {% if product.cover %}
+                <a href="{{ product.get_absolute_url }}">
+                  <img src="{{ product.cover.url }}" alt="{{ product.title }}">
+                </a>
+              {% else %}
+                <a href="{{ product.get_absolute_url }}">
+                  <img src="" alt="{{ product.title }}">
+                </a>
+              {% endif %}
             </div>
             <div class="col-12 col-sm-8 product-main-details mt-md--50">
               <div class="product-summary pl-lg--30 pl-md--0 text-right p-4">
@@ -193,11 +200,9 @@
                                       </div>
                                     {% endif %}
                                     <div class="review__meta">
-                                      <strong class="review__author px-4">{{ comment.user.username }}</strong
-                                        >
-                                        <span class="review__dash">-</span>
-                                        <span class="review__published-date" style="padding-right: 15px;">{{ comment.datetime_created|date:'Y-m-d' }}</span
-                                          >
+                                      <span class="review__published-date" style="padding-right: 15px;">{{ comment.datetime_created|to_jalali:'%Y/%m/%d' }}</span>
+                                      <span class="review__dash">-</span>
+                                      <strong class="review__author px-4">{{ comment.user.username }}</strong>
                                         </div>
                                         <div class="product-rating">
                                           <div class="m-0 star-rating star-five">
@@ -221,7 +226,7 @@
                                       <img src="{% static 'img/others/comment-1.jpg' %}"
                                            alt="Review Avatar"
                                            class="review__avatar"/>
-                                      <strong>{{ reply.user.username }}</strong> | <small>{{ reply.datetime_created|date:'Y-m-d' }}</small>
+                                      <strong>{{ reply.user.username }}</strong> | <small>{{ reply.datetime_created|to_jalali:'%Y/%m/%d' }}</small>
                                       <div>
                                         {{ reply.body }}
                                       </div>
@@ -251,7 +256,9 @@
                                         </div>
                                       </form>
                                     {% else %}
-                                    <div class="alert alert-warning"><strong>{% blocktranslate with link="/accounts/login" %}You Should <a href="{{ link }}">Login</a> First To Able To Send Comments !{% endblocktranslate %}</strong></div>
+                                      <div class="alert alert-warning">
+                                        <strong>{% blocktranslate with link="/accounts/login" %}You Should <a href="{{ link }}">Login</a> First To Able To Send Comments !{% endblocktranslate %}</strong>
+                                      </div>
                                       {{ comment_form.body|attr:'disabled'|add_class:'form-control' }}
                                       <div class="form__group">
                                         <div class="form-row">

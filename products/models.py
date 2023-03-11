@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.utils import timezone
 
 from accounts.models import CustomUser
 
@@ -15,8 +16,9 @@ class Product(models.Model):
     description = models.TextField()
     price = models.PositiveIntegerField()
     active = models.BooleanField(default=True)
+    cover = models.ImageField(upload_to='products/cover', blank=True, null=True)
 
-    datetime_created = models.DateTimeField(auto_now_add=True)
+    datetime_created = models.DateTimeField(default=timezone.now)
     datetime_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):

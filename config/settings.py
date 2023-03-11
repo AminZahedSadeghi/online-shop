@@ -41,20 +41,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # local apps
-    'accounts.apps.AccountsConfig',
-    'pages.apps.PagesConfig',
-    'products.apps.ProductConfig',
-    'cart.apps.CartConfig',
-
+    
     # third party apps
+    'jalali_date',
     'rosetta',
     'crispy_forms',
     'crispy_bootstrap5',
     'allauth',
     'allauth.account',
     'widget_tweaks',
+
+    # local apps
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
+    'products.apps.ProductConfig',
+    'cart.apps.CartConfig',
+    'persian_translate.apps.PersianTranslateConfig',
+
 
 ]
 
@@ -97,8 +100,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 
-                #  To reach LANGUAGE_CODE in templates by => {% get_current_lanquage %}
-                'django.template.context_processors.i18n',
+                'django.template.context_processors.i18n', #  To reach LANGUAGE_CODE in templates by => {% get_current_lanquage %}
+                'cart.context_processors.cart',
+             
             ],
         },
     },
@@ -195,3 +199,7 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'success',
     messages.INFO: 'info',
 }
+
+# Media Config
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

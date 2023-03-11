@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Product, Comment
+from jalali_date.admin import ModelAdminJalaliMixin
 
 
 class CommentIndline(admin.TabularInline):
@@ -10,7 +11,7 @@ class CommentIndline(admin.TabularInline):
 
 
 @admin.register(Product)
-class AdminProduct(admin.ModelAdmin):
+class AdminProduct(ModelAdminJalaliMixin, admin.ModelAdmin):
     list_display = ['title', 'price', 'active']
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ['datetime_created']

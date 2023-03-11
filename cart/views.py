@@ -30,11 +30,11 @@ class CartAddView(View):
             qty = cd['qty']
             inplace = cd['inplace']
             cart.add(product, qty, inplace=cd['inplace'])
-            if inplace:
-                messages.success(request, _('Quantity Has Been Changed :) '))
-            else:
-                messages.success(request, _(
-                    'Your Product Added To Cart Successfully :) '))
+            # if inplace:
+            #     messages.success(request, _('Quantity Has Been Changed :) '))
+            # else:
+            #     messages.success(request, _(
+            #         'Your Product Added To Cart Successfully :) '))
 
             return redirect('cart:detail')
 
@@ -44,5 +44,4 @@ class CartRemoveView(View):
         cart = Cart(request)
         product = get_object_or_404(Product, pk=product_id)
         cart.remove(product)
-        messages.success(request, _('The Product Has Been Removed :)'))
         return redirect('cart:detail')
