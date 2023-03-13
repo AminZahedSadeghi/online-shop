@@ -1,4 +1,11 @@
-var = '09369642384'
-print(var_maketrans:=var.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹'))
-print(var.translate(var_maketrans))
-print('\u1776')
+number = '12356789'
+
+result = ''
+count = 0
+for num in reversed(number):
+    if count % 3 == 0:
+        result += ','
+    result += num
+    count += 1
+
+print(result)

@@ -120,7 +120,7 @@
                        id="nav-description"
                        role="tabpanel"
                        aria-labelledby="nav-description-tab">
-                    <div class="product-description text-justify">{{ product.description|linebreaks }}</div>
+                    <div class="product-description text-justify">{{ product.description|safe|linebreaks }}</div>
                   </div>
                   <div class="tab-pane text-right"
                        id="nav-info"

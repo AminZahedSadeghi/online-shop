@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'widget_tweaks',
+    'ckeditor',
 
     # local apps
     'accounts.apps.AccountsConfig',

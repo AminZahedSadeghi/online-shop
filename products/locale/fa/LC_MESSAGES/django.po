@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-02 00:08+0330\n"
-"PO-Revision-Date: 2023-02-25 20:13+0000\n"
+"POT-Creation-Date: 2023-03-13 23:39+0330\n"
+"PO-Revision-Date: 2023-03-13 20:12+0000\n"
 "Last-Translator:   <root@root.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,54 +19,93 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\products\templates\products\product_detail.html:20
+#: .\products\models.py:16
+msgid "Title"
+msgstr "عنوان"
+
+#: .\products\models.py:17
+msgid "Slug"
+msgstr "اسلاگ"
+
+#: .\products\models.py:18
+#, fuzzy
+#| msgid "Product Description"
+msgid "Description"
+msgstr "توضیحات محصول"
+
+#: .\products\models.py:19
+msgid "Price"
+msgstr "قیمت"
+
+#: .\products\models.py:20
+#, fuzzy
+#| msgid "Special Discount"
+msgid "Discount"
+msgstr "تخفیف ویژه"
+
+#: .\products\models.py:21
+msgid "Active"
+msgstr "فعال بودن"
+
+#: .\products\models.py:22
+msgid "Cover"
+msgstr "کاور"
+
+#: .\products\models.py:24
+msgid "Date Time Created"
+msgstr "زمان ساخت"
+
+#: .\products\models.py:25
+msgid "Date Time Modified"
+msgstr "زمان تغییر"
+
+#: .\products\templates\products\product_detail.html:22
 msgid "Detail Of"
 msgstr "جزئیات محصول"
 
-#: .\products\templates\products\product_detail.html:43
-#: .\products\templates\products\product_detail.html:45
-#: .\products\templates\products\product_list.html:58
-#: .\products\templates\products\product_list.html:61
+#: .\products\templates\products\product_detail.html:50
+#: .\products\templates\products\product_detail.html:53
+#: .\products\templates\products\product_list.html:66
+#: .\products\templates\products\product_list.html:70
 msgid "$"
 msgstr "تومان"
 
-#: .\products\templates\products\product_detail.html:64
-#: .\products\templates\products\product_list.html:64
+#: .\products\templates\products\product_detail.html:73
+#: .\products\templates\products\product_list.html:74
 msgid "Add to Cart"
 msgstr "اضافه به سبد خرید"
 
-#: .\products\templates\products\product_detail.html:70
+#: .\products\templates\products\product_detail.html:79
 msgid "Categories: "
 msgstr "دسته بندی ها:"
 
-#: .\products\templates\products\product_detail.html:91
+#: .\products\templates\products\product_detail.html:100
 msgid "Product Description"
 msgstr "توضیحات محصول"
 
-#: .\products\templates\products\product_detail.html:99
+#: .\products\templates\products\product_detail.html:108
 msgid "Features"
 msgstr "ویژگی ها"
 
-#: .\products\templates\products\product_detail.html:107
+#: .\products\templates\products\product_detail.html:116
 msgid "Comments"
 msgstr "کامنت ها"
 
-#: .\products\templates\products\product_detail.html:239
+#: .\products\templates\products\product_detail.html:248
 msgid "Write Your Comments"
 msgstr "کامنت خود را بنویسید"
 
-#: .\products\templates\products\product_detail.html:249
-#: .\products\templates\products\product_detail.html:260
+#: .\products\templates\products\product_detail.html:258
+#: .\products\templates\products\product_detail.html:271
 msgid "Send"
 msgstr "ارسال"
 
-#: .\products\templates\products\product_detail.html:255
+#: .\products\templates\products\product_detail.html:265
 #, python-format
-msgid ""
-"You Should <a href=\"%(link)s\">Login</a> First To Able To Send Comments !"
+msgid "You Should <a href=\"%(link)s\">Login</a> First To Able To Send Comments !"
 msgstr "برای گذاشتن کامنت در سایت باید اول <a href=\"%(link)s\">وارد</a> شوید !"
 
-#: .\products\templates\products\product_list.html:51
+#: .\products\templates\products\product_list.html:59
 msgid "Special Discount"
 msgstr "تخفیف ویژه"
 

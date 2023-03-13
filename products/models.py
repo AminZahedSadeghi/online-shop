@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.utils import timezone
+from ckeditor.fields import RichTextField
+from django.utils.translation import gettext as _
 
 from accounts.models import CustomUser
 
@@ -11,16 +13,16 @@ class ActiveCommentsManager(models.Manager):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(null=True, blank=True, allow_unicode=True)
-    description = models.TextField()
-    price = models.PositiveIntegerField()
-    discount = models.PositiveIntegerField(blank=True, null=True)
-    active = models.BooleanField(default=True)
-    cover = models.ImageField(upload_to='products/cover', blank=True, null=True)
+    title = models.CharField(_('Title'), max_length=100)
+    slug = models.SlugField(_('Slug'), null=True, blank=True, allow_unicode=True)
+    description = RichTextField(verbose_name=_('Description'))
+    price = models.PositiveIntegerField(_('Price'))
+    discount = models.PositiveIntegerField(_('Discount'), blank=True, null=True)
+    active = models.BooleanField(_('Active'), default=True)
+    cover = models.ImageField(_('Cover'), upload_to='products/cover', blank=True, null=True)
 
-    datetime_created = models.DateTimeField(default=timezone.now)
-    datetime_modified = models.DateTimeField(auto_now=True)
+    datetime_created = models.DateTimeField(_('Date Time Created'), default=timezone.now)
+    datetime_modified = models.DateTimeField(_('Date Time Modified'), auto_now=True)
 
     def __str__(self):
         return f'{self.title}: {self.id}'
